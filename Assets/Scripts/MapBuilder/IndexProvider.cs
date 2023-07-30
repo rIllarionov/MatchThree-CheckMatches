@@ -27,8 +27,8 @@ public class IndexProvider : MonoBehaviour
     
     public Vector2Int GetIndex(Vector2 coordinates)
     {
-        int indexColumn = Mathf.RoundToInt(coordinates.x);
-        int indexRow = Mathf.RoundToInt(coordinates.y);
+        int indexColumn = Mathf.RoundToInt(coordinates.x / 100 + _halfMapSize.x);
+        int indexRow = Mathf.RoundToInt(coordinates.y / 100  + _halfMapSize.y);
         return new Vector2Int( indexColumn,indexRow);
     }
 }

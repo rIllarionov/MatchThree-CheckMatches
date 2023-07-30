@@ -7,8 +7,8 @@ public class MapBuilder : MonoBehaviour
     [SerializeField] private RectTransform _map;
     [SerializeField] private IndexProvider _indexProvider;
 
-    [SerializeField] private int _countItemsRow = 3;
-    [SerializeField] private int _countItemsColumn = 5;
+    [SerializeField] private int _countItemsRow;
+    [SerializeField] private int _countItemsColumn;
 
     [SerializeField] private GameObject _tilePrefab;
     [SerializeField] private ScriptableItemsHolder _itemsHolder;

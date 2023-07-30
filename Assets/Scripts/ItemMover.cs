@@ -55,9 +55,13 @@ public class ItemMover : MonoBehaviour
 
     private void ChangeElements()
     {
+        //сразу сбросили наличие элементов
+        
         _hasFirstElement = false;
         _hasSecondElement = false;
 
+        //меняем местами элементы
+        
         var firstElementStartPosition = _firstElement.transform.position;
         var secondElementStartPosition = _secondElement.transform.position;
 
@@ -71,7 +75,7 @@ public class ItemMover : MonoBehaviour
         
         ReversElements();
 
-        if (!CheckMatches())
+        if (!CheckMatches())//если по результатам передвижения нет совпадений 3 в ряд то меняем назад
         {
             _firstElement.transform
                 .DOMove(firstElementStartPosition, _moveDuration)
@@ -124,10 +128,11 @@ public class ItemMover : MonoBehaviour
 
     private bool CanMove() //проверяем что объекты рядом и что двигать планируем не диагонально
     {
-        // если индекс x отлиается на единицу а у не отличается или если у отличается на единицу а х не меняется
-        _firstElementCoordinates = _indexProvider.GetIndex(_firstElement.transform.position);
-        _secondElementCoordinates = _indexProvider.GetIndex(_secondElement.transform.position);
+        
+        _firstElementCoordinates = _indexProvider.GetIndex(_firstParent.transform.localPosition);
+        _secondElementCoordinates = _indexProvider.GetIndex(_secondParent.transform.localPosition);
 
+        // если индекс x отличается на единицу а у не отличается или если у отличается на единицу а х не меняется
         if (_firstElementCoordinates.x == _secondElementCoordinates.x &&
             Math.Abs(_firstElementCoordinates.y - _secondElementCoordinates.y) == 1)
         {
